@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Shaders/FXAA.fx</SourceFile>
+  <SourceTime>2016-12-24T19:30:46.3445414-06:00</SourceTime>
+  <DestFile>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/bin/Windows/Shaders/FXAA.xnb</DestFile>
+  <DestTime>2016-12-24T19:31:00.1253049-06:00</DestTime>
+  <Importer>EffectImporter</Importer>
+  <ImporterTime>2016-03-15T21:18:04-05:00</ImporterTime>
+  <Processor>EffectProcessor</Processor>
+  <ProcessorTime>2016-03-15T21:18:04-05:00</ProcessorTime>
+  <Parameters>
+    <Key>DebugMode</Key>
+    <Value>Auto</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

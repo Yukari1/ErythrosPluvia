@@ -31,6 +31,8 @@ namespace Erythros_Pluvia.Scenes
         /// </summary>
         protected Microsoft.Xna.Framework.Content.ContentManager Content { get { return Main.ContentManager; } }
 
+        protected Effect Effect { get { return Main.RenderingEffect; } }
+
         #endregion
 
 

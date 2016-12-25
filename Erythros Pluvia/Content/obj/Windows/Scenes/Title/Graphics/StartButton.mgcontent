@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Scenes/Title/Graphics/StartButton.png</SourceFile>
-  <SourceTime>2016-12-23T15:17:15.928874-06:00</SourceTime>
+  <SourceTime>2016-12-24T19:42:46.6278041-06:00</SourceTime>
   <DestFile>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/bin/Windows/Scenes/Title/Graphics/StartButton.xnb</DestFile>
-  <DestTime>2016-12-23T17:10:03.2148462-06:00</DestTime>
+  <DestTime>2016-12-24T19:42:48.079561-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-15T21:18:04-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

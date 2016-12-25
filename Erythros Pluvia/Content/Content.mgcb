@@ -100,3 +100,9 @@
 #begin Maps/test.tmx
 /copy:Maps/test.tmx
 
+#begin Shaders/FXAA.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/FXAA.fx
+

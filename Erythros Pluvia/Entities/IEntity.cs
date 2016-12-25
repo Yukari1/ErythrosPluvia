@@ -26,7 +26,7 @@ namespace Erythros_Pluvia.Entities
 
         }
 
-        public void EndUpdate()
+        public virtual void EndUpdate()
         {
             PreviousPosition = Position;
             Position += Speed;

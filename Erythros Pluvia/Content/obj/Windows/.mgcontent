@@ -11,5 +11,6 @@
     <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/PlayerJump.png</File>
     <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/PlayerWalk.png</File>
     <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Tiles/FloorTile.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Shaders/FXAA.fx</File>
   </SourceFiles>
 </SourceFileCollection>

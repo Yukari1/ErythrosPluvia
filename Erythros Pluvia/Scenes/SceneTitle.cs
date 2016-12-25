@@ -56,13 +56,11 @@ namespace Erythros_Pluvia.Scenes
 
         public override void OnDraw(GameTime time)
         {
-            SpriteBatch.Begin();
+            SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, Effect);
 
             SpriteBatch.Draw(Background, new Vector2(0,0), Color.White);
 
             SpriteBatch.Draw(StartButton, new Vector2(0, GraphicsDevice.Viewport.Height - 128), new Color(1.0f, 1.0f, 1.0f, T));
-
-            P.OnDraw();
 
             SpriteBatch.End();
         }

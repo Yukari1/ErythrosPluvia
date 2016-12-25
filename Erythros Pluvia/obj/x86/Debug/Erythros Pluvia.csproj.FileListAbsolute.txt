@@ -32,3 +32,4 @@ C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Plu
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\PlayerJump.xnb
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\PlayerWalk.xnb
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Tiles\FloorTile.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Shaders\FXAA.xnb
