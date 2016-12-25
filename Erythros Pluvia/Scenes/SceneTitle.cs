@@ -42,6 +42,7 @@ namespace Erythros_Pluvia.Scenes
 
             //MenuMusic.IsLooped = true;
             //MenuMusic.Play();
+
         }
 
         public override void OnUpdate(GameTime time)
@@ -50,6 +51,7 @@ namespace Erythros_Pluvia.Scenes
 
             if (T <= 0) { AddT = true; }
             if (T >= 1) { AddT = false; }
+
         }
 
         public override void OnDraw(GameTime time)
@@ -59,6 +61,8 @@ namespace Erythros_Pluvia.Scenes
             SpriteBatch.Draw(Background, new Vector2(0,0), Color.White);
 
             SpriteBatch.Draw(StartButton, new Vector2(0, GraphicsDevice.Viewport.Height - 128), new Color(1.0f, 1.0f, 1.0f, T));
+
+            P.OnDraw();
 
             SpriteBatch.End();
         }

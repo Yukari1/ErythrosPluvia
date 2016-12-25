@@ -25,3 +25,10 @@ C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Plu
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\obj\x86\Debug\Erythros Pluvia.pdb
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Scenes\Title\Graphics\Background.xnb
 C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Scenes\Title\Graphics\StartButton.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Scenes\Maps\test.tmx
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Maps\test.tmx
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\Player.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\PlayerGrab.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\PlayerJump.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Sprites\Player\PlayerWalk.xnb
+C:\Users\hansj\Documents\Visual Studio 2015\Projects\ErythrosPluvia\Erythros Pluvia\bin\Windows\x86\Debug\Content\Tiles\FloorTile.xnb

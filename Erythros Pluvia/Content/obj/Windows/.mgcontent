@@ -6,5 +6,10 @@
   <SourceFiles>
     <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Scenes/Title/Graphics/Background.png</File>
     <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Scenes/Title/Graphics/StartButton.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/Player.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/PlayerGrab.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/PlayerJump.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Sprites/Player/PlayerWalk.png</File>
+    <File>C:/Users/hansj/Documents/Visual Studio 2015/Projects/ErythrosPluvia/Erythros Pluvia/Content/Tiles/FloorTile.png</File>
   </SourceFiles>
 </SourceFileCollection>
