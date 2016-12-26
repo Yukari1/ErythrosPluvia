@@ -36,8 +36,9 @@ namespace Erythros_Pluvia.Util
             this.numFrames = numFrames;
 
             // we will extract the individual animation frames upon construction. This way, we're not continually recalculating the current frame at runtime
-            int frameWidth = spritesheet.getWidth();
-            int frameHeight = spritesheet.getHeight();
+            int numRows = numFrames / numCols;
+            int frameWidth = spritesheet.getWidth() / numCols;
+            int frameHeight = spritesheet.getHeight() / numRows;
             for (int i = 0; i < numFrames; i++)
             {
                 int currentCol = i % numCols;
@@ -51,10 +52,10 @@ namespace Erythros_Pluvia.Util
                 cropImage.setData(cropPixels);
 
                 Textures[i] = cropImage;
-
-                this.TextureID = 0;
-                this.counter = 0;
             }
+
+            this.TextureID = 0;
+            this.counter = 0;
         }
 
         #endregion
