@@ -37,19 +37,19 @@ namespace Erythros_Pluvia.Util
 
             // we will extract the individual animation frames upon construction. This way, we're not continually recalculating the current frame at runtime
             int numRows = numFrames / numCols;
-            int frameWidth = spritesheet.getWidth() / numCols;
-            int frameHeight = spritesheet.getHeight() / numRows;
+            int frameWidth = spritesheet.Width / numCols;
+            int frameHeight = spritesheet.Height / numRows;
             for (int i = 0; i < numFrames; i++)
             {
                 int currentCol = i % numCols;
                 int currentRow = i / numCols;
 
-                Texture2D cropImage = new Texture2D(spritesheet.graphicsDevice, frameWidth, frameHeight);
+                Texture2D cropImage = new Texture2D(spritesheet.GraphicsDevice, frameWidth, frameHeight);
                 Color[] cropPixels = new Color[frameWidth * frameHeight];
 
                 // first argument is mipmap level. Assuming for now that this will be 0 in this instance
-                spritesheet.getData(0, new Rectangle(currentCol * frameWidth, currentRow * frameHeight, frameWidth, frameHeight), cropPixels, 0, cropPixels.Length);
-                cropImage.setData(cropPixels);
+                spritesheet.GetData(0, new Rectangle(currentCol * frameWidth, currentRow * frameHeight, frameWidth, frameHeight), cropPixels, 0, cropPixels.Length);
+                cropImage.SetData(cropPixels);
 
                 Textures[i] = cropImage;
             }
