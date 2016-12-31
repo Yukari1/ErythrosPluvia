@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Scenes
 {
     public abstract class IScene
     {
+
+        #region Fields
+
+        protected InputManager inputManager;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -25,6 +33,8 @@ namespace Erythros_Pluvia.Scenes
         /// Gets the SpriteBatch in use
         /// </summary>
         protected SpriteBatch SpriteBatch { get { return Main.SpriteBatch; } }
+
+        public InputManager InputManager { get { return this.inputManager; } set { this.inputManager = value; } }
 
         /// <summary>
         /// Gets the ContentManager in use
@@ -41,7 +51,7 @@ namespace Erythros_Pluvia.Scenes
         public virtual void OnStart() { }
         public virtual void OnStop() { }
 
-        public virtual void OnUpdate(GameTime time) { }
+        public virtual void OnUpdate(GameTime time) { InputManager.executeCommands(time); }
         public virtual void OnDraw(GameTime time) { }
 
         #endregion
