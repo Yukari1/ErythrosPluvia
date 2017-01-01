@@ -44,8 +44,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Scenes\SceneTitle.cs" />
-    <Compile Include="Util\Sprite.cs" />
+    <Compile Include="Util\AnimatedSprite.cs" />
+    <Compile Include="Util\InputManager.cs" />
     <Compile Include="Util\SceneManager.cs" />
+    <Compile Include="Util\Sprite.cs" />
+    <Compile Include="Util\WindowsInputManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
