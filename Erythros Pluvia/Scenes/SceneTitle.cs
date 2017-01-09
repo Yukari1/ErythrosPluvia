@@ -92,6 +92,7 @@ namespace Erythros_Pluvia.Scenes
             WindowsInputManager windowsInputManager = new WindowsInputManager();
             windowsInputManager.addKeyPressBinding(Keys.Up, scrollUpCommand);
             windowsInputManager.addKeyPressBinding(Keys.Down, scrollDownCommand);
+            windowsInputManager.addKeyPressBinding(Keys.Enter, makeSelection);
 
             windowsInputManager.addKeyReleaseBinding(Keys.Up, stopScrollingCommand);
             windowsInputManager.addKeyReleaseBinding(Keys.Down, stopScrollingCommand);
@@ -189,7 +190,11 @@ namespace Erythros_Pluvia.Scenes
         {
             if (currentSelection.Value == QuitToDesktopButton)
             {
-                // quit game
+                Util.SceneManager.CurrentScene = null;
+            }
+            else if (currentSelection.Value == NewGameButton)
+            {
+                Util.SceneManager.CurrentScene = new SceneLevel("Maps/test");
             }
         }
 
