@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Erythros_Pluvia.Util
+namespace Erythros_Pluvia.Input
 {
 
     #region Delegates

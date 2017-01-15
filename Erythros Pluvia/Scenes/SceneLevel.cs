@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 using MonoGame.Extended.Maps.Tiled;
 
+using Erythros_Pluvia.Input;
 using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Scenes

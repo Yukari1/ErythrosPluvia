@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using Erythros_Pluvia.Input;
 using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Scenes

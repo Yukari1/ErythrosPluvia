@@ -2,17 +2,19 @@
     Copyright 2016 ErythrosPluvia, All rights reserved.
 ***********************************************************/
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
-using Erythros_Pluvia.Util;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections;
+
+using Erythros_Pluvia.Input;
+using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Scenes
 {
