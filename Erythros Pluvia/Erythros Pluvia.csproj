@@ -62,7 +62,7 @@
     </Reference>
     <Reference Include="MonoGame.Extended.Tiled, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MonoGame.extended.Tiled\lib\MonoGame.Extended.Tiled.dll</HintPath>
+      <HintPath>..\references\MonoGame.Extended.Tiled.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
