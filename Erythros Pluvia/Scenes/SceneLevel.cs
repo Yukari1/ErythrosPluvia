@@ -28,6 +28,12 @@ namespace Erythros_Pluvia.Scenes
         // object containing all the data needed to render the Tiled map
         protected TiledMap map;
 
+        // the map renderer
+        protected IMapRenderer mapRenderer;
+
+        // the Matrix for the user's current viewport
+        protected Matrix viewportMatrix;
+
         #endregion
 
         #region Methods
@@ -39,7 +45,10 @@ namespace Erythros_Pluvia.Scenes
 
         public override void OnStart()
         {
-            this.map = Content.Load<TiledMap>(mapAssetName);
+            map = Content.Load<TiledMap>(mapAssetName);
+            mapRenderer = new FullMapRenderer(GraphicsDevice);
+            mapRenderer.SwapMap(map);
+            viewportMatrix = Matrix.Identity;
 
             // for now, make sure there's an easy way to exit the game. We'll do more fancy stuff later
             Command exitGame = delegate
@@ -51,6 +60,20 @@ namespace Erythros_Pluvia.Scenes
             windowsInputManager.addKeyPressBinding(Keys.Escape, exitGame);
 
             InputManager = windowsInputManager;
+        }
+
+        public override void OnUpdate(GameTime time)
+        {
+            InputManager.executeCommands(time);
+
+            mapRenderer.Update(time);
+        }
+
+        public override void OnDraw(GameTime time)
+        {
+            base.OnDraw(time);
+
+            mapRenderer.Draw(viewportMatrix);
         }
 
         #endregion
