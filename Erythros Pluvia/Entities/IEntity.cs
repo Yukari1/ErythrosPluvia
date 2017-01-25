@@ -7,15 +7,33 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Erythros_Pluvia.Util;
+
 namespace Erythros_Pluvia.Entities
 {
-    public class IEntity : Util.Sprite
+    public class IEntity
     {
-        #region Fields
+        #region Properties
 
-        public Vector2 Speed = Vector2.Zero;
+        /// <summary>
+        /// Current velocity of the entity.
+        /// </summary>
+        public Vector2 Velocity { set; get; }
 
-        public Vector2 PreviousPosition = Vector2.Zero;
+        /// <summary>
+        /// Previous position of the entity
+        /// </summary>
+        public Vector2 PreviousPosition { set; get; }
+
+        /// <summary>
+        /// Current position of the entity
+        /// </summary>
+        public Vector2 Position { set; get; }
+
+        /// <summary>
+        /// The sprite representing the entity on-screen
+        /// </summary>
+        public Sprite Sprite { set; get; }
 
         #endregion
 
@@ -29,7 +47,7 @@ namespace Erythros_Pluvia.Entities
         public virtual void EndUpdate()
         {
             PreviousPosition = Position;
-            Position += Speed;
+            Position += Velocity;
 
             // TODO: movement checks
         }

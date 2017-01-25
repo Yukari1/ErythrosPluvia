@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Physics\PhysicsEngine.cs" />
+    <Compile Include="Physics\PhysicsException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Input\WindowsInputManager.cs" />
@@ -47,7 +49,6 @@
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Scenes\SceneLevel.cs" />
     <Compile Include="Scenes\SceneTitle.cs" />
-    <Compile Include="Util\AnimatedSprite.cs" />
     <Compile Include="Util\SceneManager.cs" />
     <Compile Include="Util\Sprite.cs" />
   </ItemGroup>
