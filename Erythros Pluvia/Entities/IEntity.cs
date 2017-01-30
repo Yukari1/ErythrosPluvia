@@ -44,12 +44,21 @@ namespace Erythros_Pluvia.Entities
 
         }
 
-        public virtual void EndUpdate()
+        public virtual void EndUpdate(GameTime time)
         {
             PreviousPosition = Position;
             Position += Velocity;
 
             // TODO: movement checks
+        }
+
+        /// <summary>
+        /// Draw the sprite to the sprite batch
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch to which the sprite will be drawn</param>
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            Sprite.Draw(spriteBatch);
         }
 
         #endregion

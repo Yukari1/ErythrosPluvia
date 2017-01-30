@@ -41,6 +41,8 @@ namespace Erythros_Pluvia.Scenes
 
         SoundEffectInstance MenuMusic;
 
+        private Vector2 _screenCenter;
+
         bool AddT = false;
         float T = 1.0f;
 
@@ -123,9 +125,9 @@ namespace Erythros_Pluvia.Scenes
             // compare with each of these effects on/off and see what works best
             SpriteBatch.Begin(/*SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, Effect*/);
 
-            SpriteBatch.Draw(Background, new Vector2(0, 0), Color.White);
+            SpriteBatch.Draw(Background, new Vector2((GraphicsDevice.Viewport.Width / 2) - (Background.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (Background.Height / 2)), Color.White);
 
-            int buttonVerticalPosition = 120;
+            int buttonVerticalPosition = 160;
             int buttonHorizontalPosition = (GraphicsDevice.Viewport.Width / 2) - (NewGameButton.Width / 2);
 
             // draw the New Game button
@@ -196,7 +198,7 @@ namespace Erythros_Pluvia.Scenes
             }
             else if (currentSelection.Value == NewGameButton)
             {
-                Util.SceneManager.CurrentScene = new SceneLevel("Maps/test");
+                Util.SceneManager.CurrentScene = new SceneLevel("Maps/test", 44, 53);
             }
         }
 

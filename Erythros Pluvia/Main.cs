@@ -20,6 +20,9 @@ namespace Erythros_Pluvia
         public Main()
         {
             Graphics = new GraphicsDeviceManager(this);
+            Graphics.IsFullScreen = false;
+            Graphics.PreferredBackBufferWidth = 1280;
+            Graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
 
             ContentManager = Content;
@@ -120,7 +123,7 @@ namespace Erythros_Pluvia
         {
             GraphicsDevice.SetRenderTarget(RenderTarget);
 
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             Util.SceneManager.CurrentScene.OnDraw(gameTime);
 
