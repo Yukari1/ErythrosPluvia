@@ -19,22 +19,10 @@ using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Scenes
 {
-    public class SceneLevel : IScene
+    public class SceneLevel : ScenePhysical
     {
 
         #region Fields
-
-        // name of the content file the map is stored in
-        protected String mapAssetName;
-
-        // object containing all the data needed to render the Tiled map
-        protected TiledMap map;
-
-        // the map renderer
-        protected IMapRenderer mapRenderer;
-
-        // the Matrix for the user's current viewport
-        protected Matrix viewportMatrix;
 
         // the X coordinate of the tile the player will start on
         protected int playerStartTileX;
@@ -42,36 +30,11 @@ namespace Erythros_Pluvia.Scenes
         // the Y coordinate of the tile the player will start on
         protected int playerStartTileY;
 
-        // the camera tracking the player
-        protected Camera2D camera;
-
         // the player entity
         protected PlayerEntity player;
 
         // the player's movement speed
         protected float playerMovementSpeed;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// The entity representing the playable character in the scene
-        /// </summary>
-        public PlayerEntity Player
-        {
-            get { return player; }
-        }
-
-        /// <summary>
-        /// Object containing all the data necessary for 2D camera transformations
-        /// </summary>
-        public Camera2D Camera
-        {
-            get { return camera; }
-        }
-
-
 
         #endregion
 
@@ -83,7 +46,7 @@ namespace Erythros_Pluvia.Scenes
         /// <param name="mapAssetName">The name of the map Content file</param>
         /// <param name="playerStartTileX">The player's starting tile X</param>
         /// <param name="playerStartTileY">The player's starting tile Y</param>
-        public SceneLevel(String mapAssetName, int playerStartTileX, int playerStartTileY)
+        public SceneLevel(string mapAssetName, int playerStartTileX, int playerStartTileY, int numHashCols, int numHashRows) : base(mapAssetName, numHashCols, numHashRows)
         {
             this.mapAssetName = mapAssetName;
             this.playerStartTileX = playerStartTileX;
@@ -92,18 +55,13 @@ namespace Erythros_Pluvia.Scenes
 
         public override void OnStart()
         {
-
-            // load the map
-            map = Content.Load<TiledMap>(mapAssetName);
-            mapRenderer = new FullMapRenderer(GraphicsDevice);
-            mapRenderer.SwapMap(map);
-            viewportMatrix = Matrix.Identity;
-            camera = new Camera2D(GraphicsDevice);
+            base.OnStart();
 
             // initialize the player entity
             Texture2D playerTexture = Content.Load<Texture2D>("Sprites/Player/Player");
             Sprite sprite = new Sprite(playerTexture, 0, 0);
-            player = new PlayerEntity(playerStartTileX * map.TileWidth, playerStartTileY * map.TileHeight, sprite);
+            player = new PlayerEntity(playerStartTileX * map.TileWidth, playerStartTileY * map.TileHeight, sprite, 0.0f);
+            this.RegisterEntity(player);
             playerMovementSpeed = 5.0f;
 
             // for now, make sure there's an easy way to exit the game. We'll do more fancy stuff later
@@ -155,9 +113,7 @@ namespace Erythros_Pluvia.Scenes
 
         public override void OnUpdate(GameTime time)
         {
-            InputManager.executeCommands(time);
-
-            player.EndUpdate(time);
+            base.OnUpdate(time);
 
             _updateDisplay();
 
@@ -243,7 +199,7 @@ namespace Erythros_Pluvia.Scenes
 
         private float _getUpdatedCameraPosition(float playerWorldPosition, int mapSize, int viewportSize, int spriteSize)
         {
-            return MathHelper.Clamp(playerWorldPosition - (viewportSize / 2) - (spriteSize / 2), 0, mapSize - viewportSize);
+            return MathHelper.Clamp(playerWorldPosition + (spriteSize / 2) - (viewportSize / 2), 0, mapSize - viewportSize);
         }
 
         private int _getUpdatedSpritePosition(float playerWorldPosition, int mapSize, int viewportSize, int spriteSize)

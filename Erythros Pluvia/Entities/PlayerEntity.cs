@@ -11,6 +11,10 @@ using Erythros_Pluvia.Util;
 
 namespace Erythros_Pluvia.Entities
 {
+
+    /// <summary>
+    /// The entity controlled by the player.
+    /// </summary>
     public class PlayerEntity : IEntity
     {
 
@@ -20,11 +24,9 @@ namespace Erythros_Pluvia.Entities
         /// <param name="xPosition">x coordinate of the player's position, in world coordinates</param>
         /// <param name="yPosition">y coordinate of the player's position, in world coordinates</param>
         /// <param name="sprite">the sprite for this entity</param>
-        public PlayerEntity(float xPosition, float yPosition, Sprite sprite)
+        public PlayerEntity(float xPosition, float yPosition, Sprite sprite, float layer) : base(xPosition, yPosition, sprite, layer)
         {
-            this.Position = new Vector2(xPosition, yPosition);
-            this.Velocity = new Vector2(0.0f, 0.0f);
-            this.Sprite = sprite;
+            // do other stuff here. Maybe
         }
     }
 }

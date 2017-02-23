@@ -48,6 +48,7 @@
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Scenes\MapException.cs" />
     <Compile Include="Scenes\SceneLevel.cs" />
+    <Compile Include="Scenes\ScenePhysical.cs" />
     <Compile Include="Scenes\SceneTitle.cs" />
     <Compile Include="Util\SceneManager.cs" />
     <Compile Include="Util\Sprite.cs" />

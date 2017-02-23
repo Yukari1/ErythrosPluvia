@@ -33,6 +33,22 @@ namespace Erythros_Pluvia.Util
         public float Depth { get; set; }
 
         /// <summary>
+        /// The bounding box for the sprite
+        /// </summary>
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return _boundingBox;
+            }
+
+            set
+            {
+                _boundingBox = value;
+            }
+        }
+
+        /// <summary>
         /// Gets/Sets the position of the Sprite
         /// </summary>
         public Point Position

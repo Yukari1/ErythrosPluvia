@@ -198,7 +198,7 @@ namespace Erythros_Pluvia.Scenes
             }
             else if (currentSelection.Value == NewGameButton)
             {
-                Util.SceneManager.CurrentScene = new SceneLevel("Maps/test", 44, 53);
+                Util.SceneManager.CurrentScene = new SceneLevel("Maps/test", 44, 52, 8, 8);
             }
         }
 
