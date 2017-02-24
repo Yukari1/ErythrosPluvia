@@ -81,6 +81,16 @@ namespace Erythros_Pluvia.Scenes
         /// </summary>
         protected Camera2D camera;
 
+        /// <summary>
+        /// gravitational acceleration
+        /// </summary>
+        protected float gravityAcceleration;
+
+        /// <summary>
+        /// the maximum falling speed for an entity
+        /// </summary>
+        protected float maxFallSpeed;
+
         #endregion
 
         #region Public Methods
@@ -101,6 +111,8 @@ namespace Erythros_Pluvia.Scenes
             this.numHashCols = numHashCols;
             this.numHashRows = numHashRows;
             managedEntities = new LinkedList<IEntity>();
+            gravityAcceleration = 1.0f;
+            maxFallSpeed = 10.0f;
         }
 
         /// <summary>
@@ -154,7 +166,7 @@ namespace Erythros_Pluvia.Scenes
         /// <param name="time">the game time object</param>
         public override void OnUpdate(GameTime time) {
             base.OnUpdate(time);
-
+            
             updateEntityPositions(time);
             _updateSpatialHash();            
             checkCollisions();
@@ -307,75 +319,119 @@ namespace Erythros_Pluvia.Scenes
         }
 
         /// <summary>
-        /// Check to see if an entity collides with any surfaces
+        /// Check to see if an entity collides with any surfaces. Also applies gravity if the entity is found not to be on top of a surface.
         /// </summary>
         /// <param name="entity">the entity in question</param>
         /// <param name="hashId">the ID of the hash bucket the entity is in</param>
         private void _checkSurfaceCollision(IEntity entity, int hashId)
         {
-            if (!tileSpatialHash.ContainsKey(hashId))
+            bool onSurface = false;
+            if (tileSpatialHash.ContainsKey(hashId))
             {
-                return;
-            }
+                LinkedList<TiledTile> tilesInBucket = tileSpatialHash[hashId];
 
-            LinkedList<TiledTile> tilesInBucket = tileSpatialHash[hashId];
-
-            foreach (TiledTile currentTile in tilesInBucket)
-            {
-                int tileWidth = map.TileWidth;
-                int tileHeight = map.TileHeight;
-
-                // TODO this will create a metric butt ton of Rectangle objects in memory and who knows when the garbage collector will free it all up.
-                // We should profile this and if we find that it's eating up too much memory, we should use a single instance of Rectangle and swap out
-                // the values instead of constantly allocating memory for new instances
-                Rectangle tileBoundingBox = new Rectangle((int)currentTile.Position.X * map.TileWidth, (int)currentTile.Position.Y * map.TileHeight, tileWidth, tileHeight);
-                Rectangle entityBoundingBox = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.Sprite.Width, entity.Sprite.Height);
-
-                if (entityBoundingBox.Intersects(tileBoundingBox))
+                foreach (TiledTile currentTile in tilesInBucket)
                 {
-                    // we need the four corners of both the entity's current and previous bounding box in order to determine which side of the tile the entity collided with
-                    float entityBoundingBoxLeft = entity.Position.X;
-                    float entityBoundingBoxRight = entity.Position.X + entity.Width;
-                    float entityBoundingBoxTop = entity.Position.Y;
-                    float entityBoundingBoxBottom = entity.Position.Y + entity.Height;
+                    int tileWidth = map.TileWidth;
+                    int tileHeight = map.TileHeight;
 
-                    float entityPreviousBoundingBoxLeft = entity.PreviousPosition.X;
-                    float entityPreviousBoundingBoxRight = entity.PreviousPosition.X + entity.Width;
-                    float entityPreviousBoundingBoxTop = entity.PreviousPosition.Y;
-                    float entityPreviousBoundingBoxBottom = entity.PreviousPosition.Y + entity.Height;
+                    // TODO this will create a metric butt ton of Rectangle objects in memory and who knows when the garbage collector will free it all up.
+                    // We should profile this and if we find that it's eating up too much memory, we should use a single instance of Rectangle and swap out
+                    // the values instead of constantly allocating memory for new instances
+                    Rectangle tileBoundingBox = new Rectangle((int)currentTile.Position.X * map.TileWidth, (int)currentTile.Position.Y * map.TileHeight, tileWidth, tileHeight);
+                    Rectangle entityBoundingBox = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.Sprite.Width, entity.Sprite.Height);
 
-                    float tileBoundingBoxLeft = (currentTile.Position.X * map.TileWidth);
-                    float tileBoundingBoxRight = (currentTile.Position.X * map.TileWidth) + map.TileWidth;
-                    float tileBoundingBoxTop = (currentTile.Position.Y * map.TileHeight);
-                    float tileBoundingBoxBottom = (currentTile.Position.Y * map.TileHeight) + map.TileHeight;
-                    
-                    // check for a collision in each direction and force the entity's position to the edge of the tile
-                    if ((entityPreviousBoundingBoxBottom <= tileBoundingBoxTop) && (entityBoundingBoxBottom >= tileBoundingBoxTop))
+                    if (entityBoundingBox.Intersects(tileBoundingBox))
                     {
-                        Vector2 entityPosition = entity.Position;
-                        entityPosition.Y = tileBoundingBoxTop - entity.Width;
-                        entity.Position = entityPosition;
-                    }
-                    if ((entityPreviousBoundingBoxTop >= tileBoundingBoxBottom) && (entityBoundingBoxTop <= tileBoundingBoxBottom))
-                    {
-                        Vector2 entityPosition = entity.Position;
-                        entityPosition.Y = tileBoundingBoxBottom;
-                        entity.Position = entityPosition;
-                    }
-                    if (entityPreviousBoundingBoxLeft >= tileBoundingBoxRight && (entityBoundingBoxLeft <= tileBoundingBoxRight))
-                    {
-                        Vector2 entityPosition = entity.Position;
-                        entityPosition.X = tileBoundingBoxRight;
-                        entity.Position = entityPosition;
-                    }
-                    if (entityPreviousBoundingBoxRight <= tileBoundingBoxLeft && (entityBoundingBoxRight >= tileBoundingBoxLeft))
-                    {
-                        Vector2 entityPosition = entity.Position;
-                        entityPosition.X = tileBoundingBoxLeft - entity.Width;
-                        entity.Position = entityPosition;
+                        // we need the four corners of both the entity's current and previous bounding box in order to determine which side of the tile the entity collided with
+                        float entityBoundingBoxLeft = entity.Position.X;
+                        float entityBoundingBoxRight = entity.Position.X + entity.Width;
+                        float entityBoundingBoxTop = entity.Position.Y;
+                        float entityBoundingBoxBottom = entity.Position.Y + entity.Height;
+
+                        float entityPreviousBoundingBoxLeft = entity.PreviousPosition.X;
+                        float entityPreviousBoundingBoxRight = entity.PreviousPosition.X + entity.Width;
+                        float entityPreviousBoundingBoxTop = entity.PreviousPosition.Y;
+                        float entityPreviousBoundingBoxBottom = entity.PreviousPosition.Y + entity.Height;
+
+                        float tileBoundingBoxLeft = (currentTile.Position.X * map.TileWidth);
+                        float tileBoundingBoxRight = (currentTile.Position.X * map.TileWidth) + map.TileWidth;
+                        float tileBoundingBoxTop = (currentTile.Position.Y * map.TileHeight);
+                        float tileBoundingBoxBottom = (currentTile.Position.Y * map.TileHeight) + map.TileHeight;
+
+                        // check for a collision in each direction and force the entity's position to the edge of the tile
+                        if ((entityPreviousBoundingBoxBottom <= tileBoundingBoxTop) && (entityBoundingBoxBottom >= tileBoundingBoxTop))
+                        {
+                            Vector2 entityPosition = entity.Position;
+                            Vector2 entityVelocity = entity.Velocity;
+                            entityPosition.Y = tileBoundingBoxTop - entity.Width;
+                            if (entityVelocity.Y > 0.0f)
+                            {
+                                entityVelocity.Y = 0.0f;
+                            }
+                            entity.Position = entityPosition;
+                            entity.Velocity = entityVelocity;
+                            onSurface = true;
+                        }
+                        if ((entityPreviousBoundingBoxTop >= tileBoundingBoxBottom) && (entityBoundingBoxTop <= tileBoundingBoxBottom))
+                        {
+                            Vector2 entityPosition = entity.Position;
+                            Vector2 entityVelocity = entity.Velocity;
+                            entityPosition.Y = tileBoundingBoxBottom;
+                            if (entityVelocity.Y < 0.0f)
+                            {
+                                entityVelocity.Y = 0.0f;
+                            }
+                            entity.Position = entityPosition;
+                            entity.Velocity = entityVelocity;
+                        }
+                        if (entityPreviousBoundingBoxLeft >= tileBoundingBoxRight && (entityBoundingBoxLeft <= tileBoundingBoxRight))
+                        {
+                            Vector2 entityPosition = entity.Position;
+                            Vector2 entityVelocity = entity.Velocity;
+                            entityPosition.X = tileBoundingBoxRight;
+                            if (entityVelocity.X < 0.0f)
+                            {
+                                entityVelocity.X = 0.0f;
+                            }
+                            entity.Position = entityPosition;
+                            entity.Velocity = entityVelocity;
+                        }
+                        if (entityPreviousBoundingBoxRight <= tileBoundingBoxLeft && (entityBoundingBoxRight >= tileBoundingBoxLeft))
+                        {
+                            Vector2 entityPosition = entity.Position;
+                            Vector2 entityVelocity = entity.Velocity;
+                            entityPosition.X = tileBoundingBoxLeft - entity.Width;
+                            if (entityVelocity.X > 0.0f)
+                            {
+                                entityVelocity.X = 0.0f;
+                            }
+                            entity.Position = entityPosition;
+                            entity.Velocity = entityVelocity;
+                        }
                     }
                 }
             }
+
+            // if the player is not on top of a surface, resolve gravity calculations
+            if (!onSurface)
+            {
+                Vector2 entityVelocity = entity.Velocity;
+                entityVelocity.Y = this._calculateGravity(entityVelocity.Y);
+                entity.Velocity = entityVelocity;
+            }
+        }
+
+        /// <summary>
+        /// Calculate the new velocity based on gravitation acceleration, also applying a maximum falling speed where necessary
+        /// </summary>
+        /// <param name="currentFallSpeed">the current Y velocity</param>
+        /// <returns>the resulting Y velocity</returns>
+        private float _calculateGravity(float initialVelocityY)
+        {
+            // TODO make this time-based
+            return MathHelper.Clamp(initialVelocityY + gravityAcceleration, -maxFallSpeed, +maxFallSpeed);
+
         }
 
         #endregion
