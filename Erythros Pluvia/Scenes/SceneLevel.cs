@@ -62,7 +62,7 @@ namespace Erythros_Pluvia.Scenes
             Sprite sprite = new Sprite(playerTexture, 0, 0);
             player = new PlayerEntity(playerStartTileX * map.TileWidth, playerStartTileY * map.TileHeight, sprite, 0.0f);
             this.RegisterEntity(player);
-            playerMovementSpeed = 5.0f;
+            playerMovementSpeed = 100.0f;
 
             // for now, make sure there's an easy way to exit the game. We'll do more fancy stuff later
             Command exitGame = delegate
@@ -73,34 +73,19 @@ namespace Erythros_Pluvia.Scenes
             windowsInputManager.addKeyPressBinding(Keys.Escape, exitGame);
 
             // while we're at it, let's enable some movement, for debugging/testing purposes
-            Command movePlayerUpCommand = delegate
-            {
-                this._movePlayerUp();
-            };
+            Command movePlayerUpCommand = _movePlayerUp;
             windowsInputManager.addKeyPressBinding(Keys.W, movePlayerUpCommand);
 
-            Command movePlayerRightCommand = delegate
-            {
-                this._movePlayerRight();
-            };
+            Command movePlayerRightCommand = _movePlayerRight;
             windowsInputManager.addKeyPressBinding(Keys.D, movePlayerRightCommand);
 
-            Command movePlayerDownCommand = delegate
-            {
-                this._movePlayerDown();
-            };
+            Command movePlayerDownCommand = _movePlayerDown;
             windowsInputManager.addKeyPressBinding(Keys.S, movePlayerDownCommand);
 
-            Command movePlayerLeftCommand = delegate
-            {
-                this._movePlayerLeft();
-            };
+            Command movePlayerLeftCommand = _movePlayerLeft;
             windowsInputManager.addKeyPressBinding(Keys.A, movePlayerLeftCommand);
 
-            Command stopPlayerMovement = delegate
-            {
-                this._stopPlayerMovement();
-            };
+            Command stopPlayerMovement = _stopPlayerMovement;
             windowsInputManager.addKeyReleaseBinding(Keys.W, stopPlayerMovement);
             windowsInputManager.addKeyReleaseBinding(Keys.D, stopPlayerMovement);
             windowsInputManager.addKeyReleaseBinding(Keys.S, stopPlayerMovement);
@@ -133,47 +118,43 @@ namespace Erythros_Pluvia.Scenes
             SpriteBatch.End();
         }
 
-        private void _movePlayerUp()
+        private void _movePlayerUp(GameTime time)
         {
             Vector2 playerVelocity = player.Velocity;
-
-            playerVelocity.X = 0.0f;
+            
             playerVelocity.Y = -playerMovementSpeed;
 
             player.Velocity = playerVelocity;
         }
 
-        private void _movePlayerRight()
+        private void _movePlayerRight(GameTime time)
         {
             Vector2 playerVelocity = player.Velocity;
 
             playerVelocity.X = playerMovementSpeed;
-            playerVelocity.Y = 0.0f;
 
             player.Velocity = playerVelocity;
         }
 
-        private void _movePlayerDown()
+        private void _movePlayerDown(GameTime time)
         {
             Vector2 playerVelocity = player.Velocity;
-
-            playerVelocity.X = 0.0f;
+            
             playerVelocity.Y = playerMovementSpeed;
 
             player.Velocity = playerVelocity;
         }
 
-        private void _movePlayerLeft()
+        private void _movePlayerLeft(GameTime time)
         {
             Vector2 playerVelocity = player.Velocity;
 
             playerVelocity.X = -playerMovementSpeed;
-            playerVelocity.Y = 0.0f;
 
             player.Velocity = playerVelocity;
         }
 
-        private void _stopPlayerMovement()
+        private void _stopPlayerMovement(GameTime time)
         {
             Vector2 playerVelocity = player.Velocity;
 

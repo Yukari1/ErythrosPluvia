@@ -16,7 +16,7 @@ namespace Erythros_Pluvia.Util
         /// <summary>
         /// The bounding box contains the x and y position of the Sprite, plus the size of the sprite on screen
         /// </summary>
-        private Rectangle _boundingBox;
+        private Microsoft.Xna.Framework.Rectangle _boundingBox;
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace Erythros_Pluvia.Util
         /// <summary>
         /// The bounding box for the sprite
         /// </summary>
-        public Rectangle BoundingBox
+        public Microsoft.Xna.Framework.Rectangle BoundingBox
         {
             get
             {
@@ -111,7 +111,7 @@ namespace Erythros_Pluvia.Util
         public Sprite(Texture2D texture, int x, int y, float depth = 0.0f)
         {
             this.Texture = texture;
-            this._boundingBox = new Rectangle(x, y, texture.Width, texture.Height);
+            this._boundingBox = new Microsoft.Xna.Framework.Rectangle(x, y, texture.Width, texture.Height);
             this.Depth = depth;
         }
 
@@ -127,7 +127,7 @@ namespace Erythros_Pluvia.Util
         public Sprite(Texture2D texture, int x, int y, int width, int height, float depth = 0.0f)
         {
             this.Texture = texture;
-            this._boundingBox = new Rectangle(x, y, width, height);
+            this._boundingBox = new Microsoft.Xna.Framework.Rectangle(x, y, width, height);
             this.Depth = depth;
         }
 

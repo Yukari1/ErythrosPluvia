@@ -111,8 +111,8 @@ namespace Erythros_Pluvia.Scenes
             this.numHashCols = numHashCols;
             this.numHashRows = numHashRows;
             managedEntities = new LinkedList<IEntity>();
-            gravityAcceleration = 1.0f;
-            maxFallSpeed = 10.0f;
+            gravityAcceleration = 10.0f;
+            maxFallSpeed = 350.0f;
         }
 
         /// <summary>
@@ -338,10 +338,10 @@ namespace Erythros_Pluvia.Scenes
                     // TODO this will create a metric butt ton of Rectangle objects in memory and who knows when the garbage collector will free it all up.
                     // We should profile this and if we find that it's eating up too much memory, we should use a single instance of Rectangle and swap out
                     // the values instead of constantly allocating memory for new instances
-                    Rectangle tileBoundingBox = new Rectangle((int)currentTile.Position.X * map.TileWidth, (int)currentTile.Position.Y * map.TileHeight, tileWidth, tileHeight);
-                    Rectangle entityBoundingBox = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.Sprite.Width, entity.Sprite.Height);
+                    Erythros_Pluvia.Util.Rectangle tileBoundingBox = new Erythros_Pluvia.Util.Rectangle(currentTile.Position.X * map.TileWidth, currentTile.Position.Y * map.TileHeight, tileWidth, tileHeight);
+                    Erythros_Pluvia.Util.Rectangle entityBoundingBox = new Erythros_Pluvia.Util.Rectangle(entity.Position.X, entity.Position.Y, entity.Sprite.Width, entity.Sprite.Height);
 
-                    if (entityBoundingBox.Intersects(tileBoundingBox))
+                    if (entityBoundingBox.Intersects(tileBoundingBox, false))
                     {
                         // we need the four corners of both the entity's current and previous bounding box in order to determine which side of the tile the entity collided with
                         float entityBoundingBoxLeft = entity.Position.X;

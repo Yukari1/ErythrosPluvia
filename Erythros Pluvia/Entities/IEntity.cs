@@ -21,6 +21,8 @@ namespace Erythros_Pluvia.Entities
     {
         #region Properties
 
+        protected Vector2 position;
+
         protected Vector2 velocity;
 
         /// <summary>
@@ -47,7 +49,18 @@ namespace Erythros_Pluvia.Entities
         /// <summary>
         /// Current position of the entity
         /// </summary>
-        public Vector2 Position { set; get; }
+        public Vector2 Position
+        {
+            set
+            {
+                position = value;
+            }
+
+            get
+            {
+                return position;
+            }
+        }
 
         /// <summary>
         /// The sprite representing the entity on-screen
@@ -73,7 +86,7 @@ namespace Erythros_Pluvia.Entities
         /// <summary>
         /// The bounding box of the entity
         /// </summary>
-        public Rectangle BoundingBox
+        public Microsoft.Xna.Framework.Rectangle BoundingBox
         {
             get
             {
@@ -135,11 +148,9 @@ namespace Erythros_Pluvia.Entities
         /// <param name="time">time handler for this frame</param>
         public virtual void UpdatePosition(GameTime time)
         {
-
             PreviousPosition = Position;
-            Position += Velocity;
-
-            // TODO: movement checks
+            position.X += Velocity.X * (float)(time.ElapsedGameTime.TotalSeconds);
+            position.Y += Velocity.Y * (float)(time.ElapsedGameTime.TotalSeconds);
         }
 
         /// <summary>
