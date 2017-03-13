@@ -13,7 +13,7 @@ namespace Erythros_Pluvia
         public static SpriteBatch SpriteBatch { get; private set; }
         public static Microsoft.Xna.Framework.Content.ContentManager ContentManager { get; private set; }
 
-        public static Effect RenderingEffect { get; private set; }
+        //public static Effect RenderingEffect { get; private set; }
 
         RenderTarget2D RenderTarget;
 
@@ -56,7 +56,7 @@ namespace Erythros_Pluvia
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            RenderingEffect = Content.Load<Effect>("Shaders/FXAA");
+            //RenderingEffect = Content.Load<Effect>("Shaders/FXAA");
 
             RenderTarget = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
@@ -67,24 +67,24 @@ namespace Erythros_Pluvia
 
             if (!useQuality)
             {
-                RenderingEffect.CurrentTechnique = RenderingEffect.Techniques["ppfxaa_Console"];
-                RenderingEffect.Parameters["ConsoleOpt1"].SetValue(new Vector4(-2.0f / w, -2.0f / h, 2.0f / w, 2.0f / h));
-                RenderingEffect.Parameters["ConsoleOpt2"].SetValue(new Vector4(8.0f / w, 8.0f / h, -4.0f / w, -4.0f / h));
-                RenderingEffect.Parameters["ConsoleEdgeSharpness"].SetValue(consoleEdgeSharpness);
-                RenderingEffect.Parameters["ConsoleEdgeThreshold"].SetValue(consoleEdgeThreshold);
-                RenderingEffect.Parameters["ConsoleEdgeThresholdMin"].SetValue(consoleEdgeThresholdMin);
+                //RenderingEffect.CurrentTechnique = RenderingEffect.Techniques["ppfxaa_Console"];
+                //RenderingEffect.Parameters["ConsoleOpt1"].SetValue(new Vector4(-2.0f / w, -2.0f / h, 2.0f / w, 2.0f / h));
+                //RenderingEffect.Parameters["ConsoleOpt2"].SetValue(new Vector4(8.0f / w, 8.0f / h, -4.0f / w, -4.0f / h));
+                //RenderingEffect.Parameters["ConsoleEdgeSharpness"].SetValue(consoleEdgeSharpness);
+                //RenderingEffect.Parameters["ConsoleEdgeThreshold"].SetValue(consoleEdgeThreshold);
+                //RenderingEffect.Parameters["ConsoleEdgeThresholdMin"].SetValue(consoleEdgeThresholdMin);
             }
             else
             {
-                RenderingEffect.CurrentTechnique = RenderingEffect.Techniques["ppfxaa_PC"];
-                RenderingEffect.Parameters["fxaaQualitySubpix"].SetValue(fxaaQualitySubpix);
-                RenderingEffect.Parameters["fxaaQualityEdgeThreshold"].SetValue(fxaaQualityEdgeThreshold);
-                RenderingEffect.Parameters["fxaaQualityEdgeThresholdMin"].SetValue(fxaaQualityEdgeThresholdMin);
+                //RenderingEffect.CurrentTechnique = RenderingEffect.Techniques["ppfxaa_PC"];
+                //RenderingEffect.Parameters["fxaaQualitySubpix"].SetValue(fxaaQualitySubpix);
+                //RenderingEffect.Parameters["fxaaQualityEdgeThreshold"].SetValue(fxaaQualityEdgeThreshold);
+                //RenderingEffect.Parameters["fxaaQualityEdgeThresholdMin"].SetValue(fxaaQualityEdgeThresholdMin);
             }
 
-            RenderingEffect.Parameters["invViewportWidth"].SetValue(1f / w);
-            RenderingEffect.Parameters["invViewportHeight"].SetValue(1f / h);
-            RenderingEffect.Parameters["texScreen"].SetValue((Texture2D)RenderTarget);
+           // RenderingEffect.Parameters["invViewportWidth"].SetValue(1f / w);
+            //RenderingEffect.Parameters["invViewportHeight"].SetValue(1f / h);
+            //RenderingEffect.Parameters["texScreen"].SetValue((Texture2D)RenderTarget);
 
             Util.SceneManager.CurrentScene = new Scenes.SceneTitle();
         }
