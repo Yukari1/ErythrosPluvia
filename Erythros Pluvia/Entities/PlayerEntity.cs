@@ -107,7 +107,6 @@ namespace Erythros_Pluvia.Entities
                 {
                     this.velocity.Y = -calculateJumpSpeed(jumpTime, INITIAL_JUMP_SPEED, MAX_JUMP_DURATION, JUMP_POWER_EXPONENT);
                     jumpTime += (float)time.ElapsedGameTime.TotalMilliseconds;
-                    Console.WriteLine("Jump velocity: " + this.velocity.Y);
                 }
                 else
                 {
