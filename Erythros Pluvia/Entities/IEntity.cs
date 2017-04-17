@@ -17,7 +17,7 @@ namespace Erythros_Pluvia.Entities
     /// <summary>
     /// Base class for dynamic entities within the game.
     /// </summary>
-    public class IEntity
+    public abstract class IEntity
     {
         #region Properties
 
@@ -84,6 +84,11 @@ namespace Erythros_Pluvia.Entities
         }
 
         /// <summary>
+        /// True if the entity's feet are planted on the ground, false otherwise.
+        /// </summary>
+        public bool IsOnGround { set; get; }
+
+        /// <summary>
         /// The bounding box of the entity
         /// </summary>
         public Microsoft.Xna.Framework.Rectangle BoundingBox
@@ -136,11 +141,13 @@ namespace Erythros_Pluvia.Entities
         /// <summary>
         /// What this entity will do in the event of a collision.
         /// </summary>
-        /// <param name="other">The entity with which this one collideds</param>
+        /// <param name="other">The entity with which this one collides</param>
         public virtual void OnCollide(IEntity other)
         {
 
         }
+
+        public abstract void OnUpdate(GameTime time);
 
         /// <summary>
         /// Update the entity for the current frame.

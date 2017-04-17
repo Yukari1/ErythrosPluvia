@@ -72,23 +72,26 @@ namespace Erythros_Pluvia.Scenes
             WindowsInputManager windowsInputManager = new WindowsInputManager();
             windowsInputManager.addKeyPressBinding(Keys.Escape, exitGame);
 
-            // while we're at it, let's enable some movement, for debugging/testing purposes
-            Command movePlayerUpCommand = _movePlayerUp;
-            windowsInputManager.addKeyPressBinding(Keys.W, movePlayerUpCommand);
-
             Command movePlayerRightCommand = _movePlayerRight;
             windowsInputManager.addKeyPressBinding(Keys.D, movePlayerRightCommand);
-
-            Command movePlayerDownCommand = _movePlayerDown;
-            windowsInputManager.addKeyPressBinding(Keys.S, movePlayerDownCommand);
 
             Command movePlayerLeftCommand = _movePlayerLeft;
             windowsInputManager.addKeyPressBinding(Keys.A, movePlayerLeftCommand);
 
+            Command jumpCommand = delegate
+            {
+                player.DoJump = true;
+            };
+            windowsInputManager.addKeyPressBinding(Keys.Space, jumpCommand);
+
+            Command stopJumpCommand = delegate
+            {
+                player.DoJump = false;
+            };
+            windowsInputManager.addKeyReleaseBinding(Keys.Space, stopJumpCommand);
+
             Command stopPlayerMovement = _stopPlayerMovement;
-            windowsInputManager.addKeyReleaseBinding(Keys.W, stopPlayerMovement);
             windowsInputManager.addKeyReleaseBinding(Keys.D, stopPlayerMovement);
-            windowsInputManager.addKeyReleaseBinding(Keys.S, stopPlayerMovement);
             windowsInputManager.addKeyReleaseBinding(Keys.A, stopPlayerMovement);
 
             InputManager = windowsInputManager;

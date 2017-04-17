@@ -166,7 +166,7 @@ namespace Erythros_Pluvia.Scenes
         /// <param name="time">the game time object</param>
         public override void OnUpdate(GameTime time) {
             base.OnUpdate(time);
-            
+            updateEntities(time);
             updateEntityPositions(time);
             _updateSpatialHash();            
             checkCollisions();
@@ -207,6 +207,18 @@ namespace Erythros_Pluvia.Scenes
 
                     // TODO check entities for collisions with each other
                 }
+            }
+        }
+
+        /// <summary>
+        /// Update all of the managed entities by calling their "OnUpdate" method. This update is distinct from updating the position.
+        /// </summary>
+        /// <param name="time"></param>
+        protected void updateEntities(GameTime time)
+        {
+            foreach (IEntity currentEntity in managedEntities)
+            {
+                currentEntity.OnUpdate(time);
             }
         }
 
@@ -372,7 +384,13 @@ namespace Erythros_Pluvia.Scenes
                             entity.Position = entityPosition;
                             entity.Velocity = entityVelocity;
                             onSurface = true;
+                            entity.IsOnGround = true;
                         }
+                        else
+                        {
+                            entity.IsOnGround = false;
+                        }
+
                         if ((entityPreviousBoundingBoxTop >= tileBoundingBoxBottom) && (entityBoundingBoxTop <= tileBoundingBoxBottom))
                         {
                             Vector2 entityPosition = entity.Position;
